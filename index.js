@@ -284,7 +284,7 @@
         extractScriptAttributes() {
             try {
                 // Look for both local and CDN script files
-                const scripts = document.querySelectorAll('script[src*="cdn.pollenize.org.uk"], script[src*="floradex-js-snippet.vercel.app"]');
+                const scripts = document.querySelectorAll('script[src*="cdn.pollenize.org.uk"], script[src*="cdn-widget.vercel.app/"]');
                 const script = Array.from(scripts).find(s =>
                     s.hasAttribute('data-project') || s.hasAttribute('data-theme')
                 );
