@@ -233,6 +233,10 @@
             'mvv-plymouth': {
                 name: 'MVV Plymouth',
                 description: 'MVV Plymouth biodiversity project'
+            },
+            "south-west-dairy-development-centre": {
+                name: 'South West Dairy Development Centre',
+                description: 'South West Dairy Development Centre biodiversity project'
             }
         }
     };
