@@ -31,8 +31,10 @@
             height: '800px',
             width: '100%',
             theme: 'light',
-            showHeader: true,
-            showFooter: true,
+            showHeader: false,
+            showFooter: false,
+            /** Hide scrollbars on the widget mount (host div); does not change cross-origin iframe internals */
+            hideMountScrollbar: true,
             responsive: true,
             projectId: null,
             containerId: 'floradex-widget-container',
@@ -287,8 +289,8 @@
          */
         extractScriptAttributes() {
             try {
-                // Look for both local and CDN script files
-                const scripts = document.querySelectorAll('script[src*="cdn.pollenize.org.uk"], script[src*="cdn-widget.vercel.app/"]');
+                // Any external script URL; match by data attributes below
+                const scripts = document.querySelectorAll('script[src]');
                 const script = Array.from(scripts).find(s =>
                     s.hasAttribute('data-project') || s.hasAttribute('data-theme')
                 );
@@ -327,6 +329,11 @@
 
             if (attrs.theme !== undefined) {
                 this.settings.theme = attrs.theme;
+            }
+
+            if (attrs.hideScrollbar !== undefined) {
+                const s = String(attrs.hideScrollbar).trim().toLowerCase();
+                this.settings.hideMountScrollbar = !(s === 'false' || s === '0' || s === 'no');
             }
 
             this.log('debug', 'Mapped settings:', this.settings);
@@ -429,6 +436,7 @@
         setupWidget() {
             this.addHeaderFooter();
             this.applyStyles();
+            this.applyMountScrollbarPresentation();
             this.currentProject = this.settings.projectId;
         }
 
@@ -780,9 +788,34 @@
                         font-size: 20px !important;
                     }
                 }
+
+                .floradex-widget--hide-mount-scrollbar {
+                    scrollbar-width: none;
+                    -ms-overflow-style: none;
+                }
+                .floradex-widget--hide-mount-scrollbar::-webkit-scrollbar {
+                    display: none;
+                    width: 0;
+                    height: 0;
+                }
             `;
 
             document.head.appendChild(style);
+        }
+
+        /**
+         * Hide scrollbars on the widget container (embed mount section).
+         * @private
+         */
+        applyMountScrollbarPresentation() {
+            if (!this.container) {
+                return;
+            }
+            if (this.settings.hideMountScrollbar) {
+                this.container.classList.add('floradex-widget--hide-mount-scrollbar');
+            } else {
+                this.container.classList.remove('floradex-widget--hide-mount-scrollbar');
+            }
         }
 
         /**
@@ -956,6 +989,7 @@
 
             // Clean up container
             if (this.container) {
+                this.container.classList.remove('floradex-widget--hide-mount-scrollbar');
                 this.container.innerHTML = '';
             }
 
@@ -1025,8 +1059,8 @@
         const defaultContainer = document.getElementById('floradex-widget-container');
         console.log('Floradex: Found default container:', !!defaultContainer, defaultContainer);
 
-        // Look for script tags with data attributes (check for both local and CDN URLs)
-        const scripts = document.querySelectorAll('script[src*="floradex.js"], script[src*="index.js"]');
+        // Look for script tags with data attributes (any script src URL)
+        const scripts = document.querySelectorAll('script[src]');
         const scriptWithData = Array.from(scripts).find(s => {
             return s.hasAttribute('data-project') || s.hasAttribute('data-theme');
         });
@@ -1052,8 +1086,8 @@
         if (containers.length === 0) {
             const defaultContainer = document.getElementById('floradex-widget-container');
             if (defaultContainer) {
-                // Check if there's a script tag with data attributes (check for both local and CDN URLs)
-                const scripts = document.querySelectorAll('script[src*="cdn.pollenize.org.uk"], script[src*="floradex-js-snippet.vercel.app"]');
+                // Check if there's a script tag with data attributes (any script src URL)
+                const scripts = document.querySelectorAll('script[src]');
                 const scriptWithData = Array.from(scripts).find(s => {
                     return s.hasAttribute('data-project') || s.hasAttribute('data-theme');
                 });
