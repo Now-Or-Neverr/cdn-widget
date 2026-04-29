@@ -168,25 +168,25 @@
                 name: 'Mount Wise Park Nature Counts',
                 description: 'Park biodiversity tracking at Mount Wise'
             },
-            'abundant-life-1': {
-                name: 'Abundant Life 1',
-                description: 'Abundant Life biodiversity project 1'
+            'common-flora-biodiversity-toolkit': {
+                name: 'Common Flora Biodiversity Toolkit',
+                description: 'Common Flora Biodiversity Toolkit'
             },
-            'abundant-life-2': {
-                name: 'Abundant Life 2',
-                description: 'Abundant Life biodiversity project 2'
+            'yelland-farm-biodivesity-toolkit': {
+                name: 'Yelland Farm Biodiversity Toolkit',
+                description: 'Yelland Farm Biodiversity Toolkit'
             },
             'abundant-life-3': {
                 name: 'Abundant Life 3',
                 description: 'Abundant Life biodiversity project 3'
             },
-            'abundant-life-4': {
-                name: 'Abundant Life 4',
-                description: 'Abundant Life biodiversity project 4'
+            'cutwellcombe-farm-biodiversity-toolkit': {
+                name: 'Cutwellcombe Farm Biodiversity Toolkit',
+                description: 'Cutwellcombe Farm Biodiversity Toolkit'
             },
-            'abundant-life-5': {
-                name: 'Abundant Life 5',
-                description: 'Abundant Life biodiversity project 5'
+            'fowlescombe-farm-biodiversity-toolkit': {
+                name: 'Fowlescombe Farm Biodiversity Toolkit',
+                description: 'Fowlescombe Farm Biodiversity Toolkit'
             },
             'abundant-life-6': {
                 name: 'Abundant Life 6',
