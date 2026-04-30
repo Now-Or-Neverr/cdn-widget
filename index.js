@@ -172,6 +172,10 @@
                 name: 'Common Flora Biodiversity Toolkit',
                 description: 'Common Flora Biodiversity Toolkit'
             },
+            'abundant-life-1': {
+                name: 'Abundant Life 1',
+                description: 'Abundant Life biodiversity project 1'
+            },
             'yelland-farm-biodivesity-toolkit': {
                 name: 'Yelland Farm Biodiversity Toolkit',
                 description: 'Yelland Farm Biodiversity Toolkit'
